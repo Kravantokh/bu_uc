@@ -1,3 +1,3 @@
 @ECHO OFF
-gcc examples/ex1.c src/*.c -I include
+gcc -fanalyzer -g examples/ex1.c src/*.c -I include
 PAUSE

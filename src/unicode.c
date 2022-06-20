@@ -157,9 +157,17 @@ ustring allocate_ustring(const char* string){
 	uint8_t* encoded_contents = (uint8_t*) malloc( (num_bytes + 1)*sizeof(uint8_t) );
 	uint8_t** chars = (uint8_t**) malloc( (strlen + 1)*sizeof(uint8_t*) );
 
+	if(encoded_contents == 0 || chars == 0){
+		/*We do not want any leaks in case one was sucessfully allocated and the other one not*/
+		free(encoded_contents);
+		free(chars);
+		return (ustring){0, 0, 0};
+	}
+
 	/* Add null terminations */
 	encoded_contents[num_bytes] = 0;
 	chars[strlen] = 0;
+
 	/* Encoding the string.*/
 	i = 0;
 	int filled_bytes = 0;
@@ -185,6 +193,9 @@ ustring allocate_ustring(const char* string){
 
 /* Return value gives you the number of bytes printed. */
 int print_ustring(ustring string){
+	if(string.length == 0)
+		return 0;
+
 	int i = 0;
 	while( string.contents[i] != 0){
 		fwrite((string.contents + i), 1, 1, stdout);

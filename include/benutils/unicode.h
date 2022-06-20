@@ -35,6 +35,8 @@ typedef struct{
 
 
 /** \brief A function to encode unicode strings.
+*
+* The returned string may have 0 length if it could not be allocated.
 * \param string - string to be encoded with U+DIGITS format for every character.
 * Example usage:
 * ```
@@ -51,6 +53,8 @@ typedef struct{
 ustring allocate_ustring(const char* string);
 
 /* \brief A function to print a unicode string
+*
+* Return value gives you the number of bytes printed. If it is zero it means that the string had 0 length.
 * \param string - the string to be printed
 */
 int print_ustring(ustring string);
