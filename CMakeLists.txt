@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.24.1)
 
 project(bu_unicode VERSION 1.0)
 
-set (CMAKE_C_STANDARD C89)
+set (CMAKE_C_STANDARD 90)
 
 set(BU_UNICODE_INCLUDE ${PROJECT_SOURCE_DIR}/include/) 
 set(BU_UNICODE_INCLUDE ${PROJECT_SOURCE_DIR}/include/ PARENT_SCOPE) 
