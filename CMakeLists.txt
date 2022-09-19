@@ -2,13 +2,11 @@ cmake_minimum_required(VERSION 3.24.1)
 
 project(bu_unicode VERSION 1.0)
 
-set (CMAKE_C_STANDARD 90)
+set(CMAKE_C_STANDARD 90)
 
-set(BU_UNICODE_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include/) 
-set(BU_UNICODE_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include/ PARENT_SCOPE) 
 
 add_library(bu_unicode STATIC ${CMAKE_CURRENT_SOURCE_DIR}/src/unicode.c)
 
-include_directories(${BU_UNICODE_INCLUDE})
-
+target_include_directories(bu_unicode INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(bu_unicode PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
